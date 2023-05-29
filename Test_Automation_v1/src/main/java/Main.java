@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         System.setProperty("webdriver.chrome.driver","C:\\Users\\vikas pal\\OneDrive\\Documents\\GitHub\\Test_Automation\\Test_Automation_v1\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
@@ -22,7 +22,12 @@ public class Main {
         driver.findElement(By.xpath("//input[@type=\"submit\"]")).click();
         System.out.println("Searching Shoes");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("//span[contains(text(),'Stan Smith (End Plastic Waste) Sneaker, Black/Black/White, 4')]")).click();
+
+        //Scroll to the Element
+        WebElement element = driver.findElement(By.xpath("//span[contains(text(),'unisex adult Stan Smith Sneaker, White/White/Silver Metallic, 7 Big Kid US')]"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        element.click();
         System.out.println("Selecting the Shoes");
 
         // hold all window handles in array list
@@ -54,11 +59,15 @@ public class Main {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.findElement(By.id("add-to-cart-button")).click();
         System.out.println("Adding it to cart");
-//        driver.findElement(By.xpath("//span[contains(text(),' View Cart ')]")).click();
-//        System.out.println("Going in the Cart");
+        driver.findElement(By.xpath("(//a[contains(.,'Go to Cart')])[2]"));
+        System.out.println("Going in the Cart");
+        Thread.sleep(5000);
         Select quantity = new Select(driver.findElement(By.xpath("//select[@data-a-touch-header=\"Quantity\"]")));
-        quantity.selectByVisibleText("5");
+        quantity.selectByVisibleText("2");
         System.out.println("Selecting the Quantity");
+
+
+        //New steps needs to be added
 
 
 
