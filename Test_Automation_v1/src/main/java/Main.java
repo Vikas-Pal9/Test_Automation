@@ -65,6 +65,30 @@ public class Main {
         Select quantity = new Select(driver.findElement(By.xpath("//select[@data-a-touch-header=\"Quantity\"]")));
         quantity.selectByVisibleText("2");
         System.out.println("Selecting the Quantity");
+        System.out.println("Test Passed");
+
+        ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
+//       switch to parent window
+        driver.switchTo().window(newTb.get(0));
+        System.out.println("Page title of parent window: " + driver.getTitle());
+        driver.findElement(By.id("twotabsearchtextbox")).clear();
+        driver.findElement(By.id("twotabsearchtextbox")).sendKeys("Dress");
+        driver.findElement(By.xpath("//input[@type=\"submit\"]")).click();
+        System.out.println("Searching Dress");
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        //Scroll to the Element
+        driver.findElement(By.xpath("//span[contains(.,'Puff Sleeve V Neck Bodycon Casual Midi Dress')]/parent::a")).click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        System.out.println("Selecting the Dress");
+        driver.findElement(By.id("add-to-cart-button")).click();
+        System.out.println("Adding it to cart");
+        driver.findElement(By.xpath("//span[contains(.,'Cart')]//parent::div/parent::a")).click();
+        System.out.println("Going inside the Cart");
+        driver.quit();
+
+
 
 
         //New steps needs to be added
