@@ -82,7 +82,9 @@ public class Main {
         driver.findElement(By.xpath("//span[contains(.,'Puff Sleeve V Neck Bodycon Casual Midi Dress')]/parent::a")).click();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println("Selecting the Dress");
-        driver.findElement(By.id("add-to-cart-button")).click();
+
+        //the below code is not working I need to check why
+        driver.findElement(By.xpath("//input[@id='add-to-cart-button']")).click();
         System.out.println("Adding it to cart");
         driver.findElement(By.xpath("//span[contains(.,'Cart')]//parent::div/parent::a")).click();
         System.out.println("Going inside the Cart");
